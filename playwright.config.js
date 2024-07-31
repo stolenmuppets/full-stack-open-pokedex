@@ -3,7 +3,7 @@ const { defineConfig, devices } = require('@playwright/test')
 module.exports = defineConfig({
   testDir: './e2e-tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
@@ -26,7 +26,7 @@ module.exports = defineConfig({
     command: 'npm run build',
     url: 'http://127.0.0.1:5000',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
+    timeout: 3000,
   },
   use: {
     baseURL: 'http://localhost:5000',
