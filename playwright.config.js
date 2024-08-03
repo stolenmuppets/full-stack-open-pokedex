@@ -24,12 +24,12 @@ module.exports = defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'npm start',
-    url: 'http://127.0.0.1:5000',
+    url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 3000,
   },
   use: {
-    baseURL: 'http://127.0.0.1:5000',
+    baseURL: 'http://127.0.0.1:3000',
     trace: 'on-first-retry'
   }
 })
