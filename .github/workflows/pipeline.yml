@@ -36,9 +36,10 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
-      - name: Trigger deployment
+      - name: Deploy
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+
   tag_release:
     needs: [deployment_pipeline]
     runs-on: ubuntu-20.04
@@ -50,3 +51,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+
+  discord_notify:
+    needs: [deployment_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Deploy Success
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: success()
+        with:
+          severity: info
+          text: A new version of Pokedex deployed
+          details: https://fullstack-b2rp.onrender.com
+          footer: Green
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      - name: Deploy Failure
+        uses: rjstone/discord-webhook-notify@v1.0.4
+        if: failure()
+        with:
+          severity: error
+          text: Build failed
+          details: https://github.com/stolenmuppets/full-stack-open-pokedex/actions/workflows/pipeline.yml
+          footer: Red
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
