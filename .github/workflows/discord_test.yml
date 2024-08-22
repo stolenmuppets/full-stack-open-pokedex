@@ -9,8 +9,8 @@ jobs:
   discord-notify:
     runs-on: ubuntu-20.04
     steps:
-      - name: Linux Test Info
       - uses: rjstone/discord-webhook-notify@v1
+      - name: Linux Test Info
         with:
           severity: info
           details: Test succeeded.
