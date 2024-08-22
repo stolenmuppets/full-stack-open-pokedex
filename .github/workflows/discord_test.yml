@@ -8,7 +8,6 @@ on:
 jobs:
   discord-notify:
     runs-on: ubuntu-20.04
-    name: Linux Test Job
     steps:
       - name: Linux Test Info
       - uses: rjstone/discord-webhook-notify@v1
