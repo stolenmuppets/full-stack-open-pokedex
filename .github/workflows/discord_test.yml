@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  discord-notify:
+  discord_notify:
     runs-on: ubuntu-20.04
     steps:
       - uses: rjstone/discord-webhook-notify@v1
