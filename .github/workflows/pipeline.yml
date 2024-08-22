@@ -64,7 +64,7 @@ jobs:
           text: A new version of Pokedex deployed
           details: https://fullstack-b2rp.onrender.com
           footer: Green
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deploy Failure
         uses: rjstone/discord-webhook-notify@v1.0.4
         if: ${{ failure() }}
@@ -73,4 +73,4 @@ jobs:
           text: Build failed
           details: https://github.com/stolenmuppets/full-stack-open-pokedex/actions/workflows/pipeline.yml
           footer: Red
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
