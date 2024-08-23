@@ -60,10 +60,10 @@ jobs:
         uses: sarisia/actions-status-discord@v1.14.7
         if: ${{ success() }}
         with:
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Deploy Failure
         uses: sarisia/actions-status-discord@v1.14.7
         if: ${{ failure() }}
         with:
           image: ${{ secrets.EMBED_IMAGE }}
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
